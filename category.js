@@ -2,15 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 const categorySchema= new mongoose.Schema({
-     petType:{
-        type:String,
-        required:true,
-    },
-    id:{
-        type:String,
-        required:true,
-        unique:true,
-    }
+     petType:{type:String,required:true,}  
 });
 
 

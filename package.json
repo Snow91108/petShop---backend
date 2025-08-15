@@ -1,16 +1,27 @@
 {
   "name": "petshop-backend",
   "version": "1.0.0",
-  "main": "user.js",
+  "main": "petMain.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node pet.js",
+    "dev": "nodemon pet.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0",
-    "mongoose": "^8.17.1"
-  }
+    "mongoose": "^8.17.1",
+    "nodemon": "^3.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snow91108/petShop---backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Snow91108/petShop---backend/issues"
+  },
+  "homepage": "https://github.com/Snow91108/petShop---backend#readme",
+  "description": ""
 }
