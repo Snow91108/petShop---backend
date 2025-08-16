@@ -11,7 +11,7 @@ const petSchema =new mongoose.Schema({
     petName:{type:String, required:true},
     petAge:{type:Number, required: true },
     price:{type:Number, required: true,},
-    petWeight:{type:Number, required:true,},
+    petWeight:{type:String, required:true,},
     category :{type: mongoose.Schema.Types.ObjectId, ref:"Category", required:true},
 })
 
@@ -38,6 +38,13 @@ app.get("/pet", async (req, res) => {
     res.send(pets);
 })
 
+//Add pets
+app.post("/pet", async (req, res) => {
+    const pets= new Pet(req.body);
+    await pets.save();
+    res.send(pets);
+})
+
 //add user
 app.post("/user", async (req, res) => {
     const user = await User.find();
@@ -46,9 +53,9 @@ app.post("/user", async (req, res) => {
 
 
 // connect DB and start server
-mongoose.connect("mongodb+srv://sachinrv19:PvNCWOTzbIDyOi7h@cluster0.1qoem00.mongodb.net/")
+mongoose.connect("mongodb+srv://sachinrv19:PvNCWOTzbIDyOi7h@cluster0.1qoem00.mongodb.net/petShopDB")
 .then(()=>{
     console.log("Connected to MongoDB");
-    app.listen(3000, () => console.log("Server is running on port 3000"));
+    app.listen(3000, () => console.log(`Server is running on port ${3000}`));
     })
     .catch((err) => console.log(err));
