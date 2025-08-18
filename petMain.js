@@ -15,7 +15,7 @@ const petSchema =new mongoose.Schema({
     category :{type: mongoose.Schema.Types.ObjectId, ref:"Category", required:true},
 })
 
-const pet = mongoose.model("Pet", petSchema);
+const Pet = mongoose.model("Pet", petSchema);
  
 //----routes
 
@@ -32,17 +32,30 @@ app.get("/category", async (req, res) => {
     res.send(categories);
 })
 
+//Delete category
+app.delete("/category/:id", async (req, res) => {
+    const category = await Category.findByIdAndDelete(req.params.id);       
+
 //Show pets
 app.get("/pet", async (req, res) => {
-    const pets = await pet.find().populate("category");
+    const pets = await Pet.find().populate("category");
     res.send(pets);
 })
 
 //Add pets
 app.post("/pet", async (req, res) => {
-    const pets= new Pet(req.body);
+    const pets= new Pet(req.body);         
     await pets.save();
     res.send(pets);
+})
+
+//delete pets
+app.delete("/pet/:id", async (req, res) => {
+    const pet = await Pet.findByIdAndDelete(req.params.id);
+    if (!pet) {
+        return res.status(404).send("Pet not found");
+    }
+    res.send(pet);
 })
 
 //add user
