@@ -34,8 +34,12 @@ app.get("/category", async (req, res) => {
 
 //Delete category
 app.delete("/category/:id", async (req, res) => {
-    const category = await Category.findByIdAndDelete(req.params.id);       
-
+    const category = await Category.findByIdAndDelete(req.params.id);
+    if (!category) {
+        return res.status(404).send("Category not found");
+    }
+    res.send(category);    
+})
 //Show pets
 app.get("/pet", async (req, res) => {
     const pets = await Pet.find().populate("category");
